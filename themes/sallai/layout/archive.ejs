@@ -1,0 +1,30 @@
+<div class="archive">
+  <%
+    let years = {};
+
+    site.posts.sort('date').reverse().forEach(post => {
+      const year = post.date.year();
+      if (years[year] === undefined) {
+        years[year] = [];
+      }
+      years[year].push(post);
+    });
+  %>
+
+  <% Object.keys(years).reverse().forEach(year => { %>
+    <div class="year">
+      <h2 class="year-title"><%= year %></h2>
+      <ul>
+        <% years[year].forEach(post => { %>
+        <li>
+          <time><%= post.date.format('MMMM DD, YYYY') %></time> &ndash; <a href="<%- config.root %><%- post.path %>"><%- post.title ? post.title : '(untitled)' %></a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  <% }) %>
+</div>
+
+<% if (page.total > 1) { %>
+<%- partial('_partial/pagination') %>
+<% } %>

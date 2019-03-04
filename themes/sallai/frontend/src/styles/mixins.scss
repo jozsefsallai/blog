@@ -1,0 +1,7 @@
+@mixin social-icon($name, $color) {
+  &.#{$name} {
+    &:hover {
+      background: $color;
+    }
+  }
+}

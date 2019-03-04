@@ -1,0 +1,14 @@
+<section class="static-page">
+  <% const postTitle = post.title || '(untitled)'; %>
+  <h2 class="title">
+    <a href="<%- url_for(post.path) %>"><%= postTitle %></a>
+  </h2>
+  <% if (post.img) {%>
+  <figure class="post-image">
+    <img src="<%= post.img %>" alt="<%= postTitle %>">
+  </figure>
+  <% } %>
+  <section class="post-content">
+    <%- page.content %>
+  </section>
+</section>

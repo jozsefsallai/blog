@@ -1,0 +1,33 @@
+<div class="rpi-progress-bar">
+  <div class="rpi-progress-bar__position"></div>
+  <div class="rpi-progress-bar__percentage"></div>
+</div>
+<article class="article-page">
+  <% const postTitle = page.title || '(untitled)'; %>
+  <h2 class="title"><%= postTitle %></h2>
+  <div class="reading-time">
+    <i class="fa fa-clock-o"></i>
+    <strong>Reading time: </strong><span>0 minutes</span>
+  </div>
+  <% if (page.img) {%>
+  <figure class="post-image">
+    <img src="<%= page.img %>" alt="<%= postTitle %>">
+  </figure>
+  <% } %>
+  <section class="post-content"><%- page.content %></section>
+  <div class="meta">
+    <span><i class="fa fa-calendar"></i> <%- date(page.date) %></span>
+    <% if (page.categories && page.categories.length) { %>
+    <span>
+      <i class="fa fa-folder-open-o"></i>
+      <%- partial('_partial/categories', { post: page }) %>
+    </span>
+    <% } %>
+    <% if (page.tags && page.tags.length) { %>
+    <span>
+      <i class="fa fa-tags"></i>
+      <%- partial('_partial/tags', { post: page }) %>
+    </span>
+    <% } %>
+  </div>
+</article>
