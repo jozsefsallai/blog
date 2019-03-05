@@ -13,7 +13,7 @@ window.onload = function () {
     readingTimeElement.querySelector('span').innerHTML = minutes === 1
       ? `${minutes} minute`
       : `${minutes} minutes`;
-    
+
     new rpi({
       rpiArea: '.blog-content',
       progressBar: {

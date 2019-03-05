@@ -53,7 +53,7 @@ module.exports = {
         test: /\.scss$/,
         use: extractSass.extract({
           use: [
-            { loader: 'css-loader' },
+            { loader: 'css-loader', options: { minimize: process.env.NODE_ENV === 'production' } },
             { loader: 'sass-loader' }
           ],
           fallback: 'style-loader'
