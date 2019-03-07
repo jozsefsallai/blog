@@ -31,3 +31,33 @@
     <% } %>
   </div>
 </article>
+<section class="sharing">
+  <h2 class="title">Thanks for reading!</h2>
+  <p>Hope you enjoyed this article! If you liked it, you can share it on your social media for more people to enjoy. Sharing is caring!</p>
+  <div class="share-buttons">
+    <a
+      class="facebook"
+      href="https://www.facebook.com/sharer/sharer.php?u=<%- config.url %>/<%- page.path %>"
+      target="_blank"
+    >
+      <i class="fa fa-facebook"></i>
+      <span>Share</span>
+    </a>
+    <a
+      class="twitter"
+      href="https://twitter.com/intent/tweet?text=<%= `"${page.title}"` %> by @jozsefsallaidev — <%- config.url %>/<%- page.path %>"
+      target="_blank"
+    >
+      <i class="fa fa-twitter"></i>
+      <span>Tweet</span>
+    </a>
+    <a
+      class="linkedin"
+      href="https://www.linkedin.com/shareArticle?mini=true&url=<%- config.url %>/<%- page.path %>&title=<%- encodeURIComponent(page.title) %>&summary=<%= config.title %>&source=<%= config.url %>/"
+      target="_blank"
+    >
+      <i class="fa fa-linkedin"></i>
+      <span>Share</span>
+    </a>
+  </div>
+</section>

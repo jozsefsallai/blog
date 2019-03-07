@@ -5,3 +5,14 @@
     }
   }
 }
+
+@mixin social-share-button($name, $color) {
+  &.#{$name} {
+    background: $color;
+    transition: background 150ms ease-in-out;
+
+    &:hover {
+      background: darken($color, 10%);
+    }
+  }
+}
