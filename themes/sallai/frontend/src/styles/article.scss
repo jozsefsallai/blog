@@ -72,6 +72,14 @@ article, .sharing {
 }
 
 article {
+  .post-image {
+    margin: 0;
+  }
+
+  .reading-time {
+    margin-bottom: 20px;
+  }
+
   img {
     max-width: 100%;
   }

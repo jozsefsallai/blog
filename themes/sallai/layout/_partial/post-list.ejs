@@ -5,14 +5,16 @@
   </h2>
   <% if (post.img) {%>
   <figure class="post-image">
-    <img src="<%= post.img %>" alt="<%= postTitle %>">
+    <a href="<%- url_for(post.path) %>">
+      <img src="/<%= post.path %><%= post.img %>" alt="<%= postTitle %>" title="<%= postTitle %>" />
+    </a>
   </figure>
   <% } %>
   <section class="post-content">
     <%
       function getDescription () {
         if (post.description) {
-          return post.description;
+          return `<p>${post.description}</p>`;
         }
 
         if (post.excerpt) {

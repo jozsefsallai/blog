@@ -11,7 +11,7 @@
   </div>
   <% if (page.img) {%>
   <figure class="post-image">
-    <img src="<%= page.img %>" alt="<%= postTitle %>">
+    <img src="/<%= page.path %><%= page.img %>" alt="<%= postTitle %>">
   </figure>
   <% } %>
   <section class="post-content"><%- page.content %></section>
