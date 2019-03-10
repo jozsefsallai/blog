@@ -254,6 +254,47 @@ article .meta {
   }
 }
 
+.spoiler {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 2px;
+  background: #202225;
+  padding: 2px;
+
+  .spoiler-content {
+    visibility: hidden;
+  }
+
+  &:hover {
+    background: rgba(32, 34, 37, .8);
+  }
+
+  &.opened {
+    background: rgba(0, 0, 0, .08);
+    cursor: initial;
+
+    .spoiler-content {
+      visibility: visible;
+    }
+  }
+}
+
+div.spoiler {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .rpi-progress-bar {
   z-index: 100;
   padding-bottom: 0;

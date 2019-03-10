@@ -2,6 +2,7 @@ import 'styles/base.scss';
 import rpi from 'reading-position-indicator';
 
 window.onload = function () {
+  // Estimate reading time and reading position indicator
   const readingTimeElement = document.querySelector('.reading-time');
 
   if (readingTimeElement) {
@@ -24,6 +25,7 @@ window.onload = function () {
     }).init();
   }
 
+  // Menu active state
   const pathComponents = window.location.pathname.split('/');
   if (pathComponents[1] === 'categories') {
     const category = pathComponents[2];
@@ -35,4 +37,14 @@ window.onload = function () {
       }
     });
   }
+
+  // Spoiler tags
+  const spoilerTags = document.querySelectorAll('.spoiler');
+  spoilerTags.forEach(spoiler => {
+    spoiler.onclick = function () {
+      if (!this.classList.contains('opened')) {
+        this.classList.add('opened');
+      }
+    }
+  });
 };
