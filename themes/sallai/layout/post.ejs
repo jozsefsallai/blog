@@ -4,7 +4,7 @@
 </div>
 <article class="article-page">
   <% const postTitle = page.title || '(untitled)'; %>
-  <h2 class="title"><%= postTitle %></h2>
+  <h2 class="title"><%- twemoji(postTitle) %></h2>
   <div class="reading-time">
     <i class="fa fa-clock-o"></i>
     <strong>Reading time: </strong><span>0 minutes</span>
@@ -14,7 +14,7 @@
     <img src="/<%= page.path %><%= page.img %>" alt="<%= postTitle %>">
   </figure>
   <% } %>
-  <section class="post-content"><%- page.content %></section>
+  <section class="post-content"><%- twemoji(page.content) %></section>
   <div class="meta">
     <span><i class="fa fa-calendar"></i> <%- date(page.date) %></span>
     <% if (page.categories && page.categories.length) { %>

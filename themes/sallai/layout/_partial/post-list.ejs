@@ -1,7 +1,7 @@
 <article>
   <% const postTitle = post.title || '(untitled)'; %>
   <h2 class="title">
-    <a href="<%- url_for(post.path) %>"><%= postTitle %></a>
+    <a href="<%- url_for(post.path) %>"><%- twemoji(postTitle) %></a>
   </h2>
   <% if (post.img) {%>
   <figure class="post-image">
@@ -26,7 +26,7 @@
 
       const postDescription = getDescription();
     %>
-    <%- postDescription %>
+    <%- twemoji(postDescription) %>
   </section>
   <div class="read-more-link">
     <a href="<%- url_for(post.path) %>">Read More</a>

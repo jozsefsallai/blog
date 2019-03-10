@@ -104,8 +104,11 @@ article {
     img, video {
       max-width: 100%;
       height: auto;
-      display: block;
       margin: auto;
+    }
+
+    video {
+      display: block;
     }
 
     iframe {
@@ -200,6 +203,12 @@ article {
 
 article {
   margin: 2em 0;
+
+  .emoji {
+    height: 1.2em !important;
+    display: inline-block;
+    vertical-align: middle;
+  }
 
   .article-list > & {
     padding-bottom: 2em;

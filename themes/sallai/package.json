@@ -14,6 +14,7 @@
     "reading-position-indicator": "^2.0.3",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.23.1",
+    "twemoji": "^11.3.0",
     "webpack": "^3.5.3"
   },
   "scripts": {
