@@ -34,6 +34,10 @@
   const imageSrc = page.img
     ? `${config.url}/${page.path}${page.img}`
     : 'https://blog.sallai.me/images/social.png';
+
+  const url = page.path === 'index.html'
+    ? config.url
+    : `${config.url}/${page.path}`;
   %>
   <title><%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -42,7 +46,7 @@
   <meta property="og:title" content="<%= title %>">
   <meta property="og:description" content="<%= (page.description || config.description) %>">
   <meta property="og:site_name" content="<%= config.title %>">
-  <meta property="og:url" content="<%= config.url %>">
+  <meta property="og:url" content="<%= url %>">
   <meta property="og:image" content="<%= imageSrc %>">
   <% if (theme.favicon) { %>
     <link rel="icon" href="<%= config.url %><%- theme.favicon %>">
