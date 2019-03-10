@@ -1,6 +1,6 @@
 # Joe's Blog
 
-This blog is a WIP. https://blog.sallai.me
+https://blog.sallai.me
 
 ## Quick Setup
 
@@ -29,4 +29,4 @@ More info about the usage on the [Hexo Documentation Page](https://hexo.io/docs/
 
 ## License
 
-All rights reserved.
+All rights reserved. [Hexo](https://hexo.io) is an open-source project.
