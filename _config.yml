@@ -80,3 +80,7 @@ theme: sallai
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+lazyload:
+  enable: true
+

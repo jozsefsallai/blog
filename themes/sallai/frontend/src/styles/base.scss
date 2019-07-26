@@ -19,16 +19,6 @@ a {
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .page {
   position: absolute;
   top: 50%;
@@ -36,7 +26,6 @@ a {
   transform: translate(-50%, -50%);
   text-align: right;
   opacity: 1;
-  animation: 650ms fadeIn;
 
   .name {
     font-size: 75px;
