@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light-mode">
 <head>
   <meta charset="utf-8">
   <%
@@ -56,5 +56,11 @@
   <% } %>
   <meta http-equiv="Cache-control" content="public">
   <%- css('dist/main') %>
+  <script>
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      document.documentElement.classList = theme;
+    }
+  </script>
   <script src="<%- config.root %>dist/build.js" defer="defer"></script>
 </head>

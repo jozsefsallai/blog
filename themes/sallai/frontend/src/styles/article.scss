@@ -7,17 +7,17 @@
 article, .sharing {
   .title {
     font-weight: 700;
-    color: $theme;
+    color: var(--theme);
     text-shadow: 2px 2px 0 rgba(23, 62, 134, 0.35);
     font-size: 35px;
     margin: 10px 0;
 
     .article-list > &, .category-page > & {
       a {
-        color: #111;
+        color: var(--title);
 
         &:hover {
-          color: $theme;
+          color: var(--theme);
         }
       }
     }
@@ -26,9 +26,9 @@ article, .sharing {
 
 .sharing {
   margin: 40px 0;
-  border: 3px solid $theme;
+  border: 3px solid var(--theme);
   border-radius: 10px;
-  background: lighten($theme, 65%);
+  background: var(--theme-faint);
   padding: 15px 20px;
   padding-bottom: 45px;
 
@@ -44,7 +44,7 @@ article, .sharing {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  
+
     a {
       display: block;
       padding: 10px 15px;
@@ -53,11 +53,11 @@ article, .sharing {
       text-align: center;
       color: #fff;
       border-radius: 4px;
-  
+
       @include social-share-button(facebook, $facebook);
       @include social-share-button(twitter, $twitter);
       @include social-share-button(linkedin, $linkedin);
-  
+
       i {
         margin-right: 3px;
       }
@@ -212,11 +212,6 @@ article {
 
   .article-list > & {
     padding-bottom: 2em;
-    border-bottom: 1px solid #c3c3c3;
-
-    &:last-child {
-      border-bottom: none;
-    }
   }
 }
 
@@ -227,23 +222,23 @@ article {
   a {
     display: block;
     padding: 6px 20px;
-    background: #efefef;
-    color: #222;
+    background: var(--read-more-background);
+    color: var(--read-more-foreground);
     font-size: 14px;
     font-weight: 700;
     border-radius: 3px;
 
     &:hover {
-      background: $theme;
+      background: var(--theme);
       color: #fff;
     }
   }
 }
 
 article .meta {
-  background: #f5f5f5;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  background: var(--meta-background);
+  border-top: 1px solid var(--meta-border-color);
+  border-bottom: 1px solid var(--meta-border-color);
   margin-top: 20px;
   padding: 10px 15px;
   color: #555;

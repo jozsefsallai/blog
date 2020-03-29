@@ -23,6 +23,7 @@
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "watch": "cd themes/sallai && npm run prepare -- --watch",
     "serve": "npm run build:prod && hexo server",
+    "serve:dev": "hexo server",
     "generate": "npm run build:prod && hexo generate",
     "generate:dry": "hexo generate"
   }
