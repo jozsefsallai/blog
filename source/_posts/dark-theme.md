@@ -26,35 +26,100 @@ CSS variables are awesome and most (modern) browsers support them, so that's wha
 
 First, you need to specify a root class in which your variables will have certain values. Everything under this class will use the variables you've defined there. For example:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 1.css %}
+```css
+.wrapper {
+  --variable: #333;
+}
+```
 
 Then you can refer to this variable using `var(--variable)`:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 2.css %}
+```css
+a {
+  color: var(--variable);
+}
+```
 
 And then you can use this HTML:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 3.html %}
+```html
+<main class="wrapper">
+  <a href="#">I am black now!</a>
+</main>
+```
 
 I think you can see how we're going to implement dark mode now. You'd basically want to have two root classes - one for the light theme and one for the dark theme.
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 4.scss %}
+```scss
+.light-mode {
+  --background: #fff;
+  --foreground: #000;
+
+  --title: #111;
+  --meta-background: #f5f5f5;
+  --meta-border-color: #ddd;
+  --read-more-background: #efefef;
+  --read-mode-foreground: #222;
+
+  --code-background: #eee;
+  --code-shadow: #fff;
+
+  // SCSS users can use variables like this:
+  --theme: #{$theme};
+  --theme-faint: #{$theme-faint};
+}
+
+.dark-mode {
+  --background: #111;
+  --foreground: #fff;
+
+  --title: #f3f3f3;
+  --meta-background: #232323;
+  --meta-border-color: #434343;
+  --read-more-background: #333;
+  --read-mode-foreground: #fefefe;
+
+  --code-background: #333;
+  --code-shadow: #121212;
+
+  --theme: #{$theme-dark};
+  --theme-faint: #{$theme-dark-faint};
+}
+```
 
 Later on, you can use the defined variables in your properties:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 5.css %}
+```css
+body {
+  margin: 0;
+  font: 16px / 1.6 'Nunito', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+}
+```
 
 You can also use the `transition` property to make a transition effect between themes:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 6.css %}
+```css
+body {
+  margin: 0;
+  font: 16px / 1.6 'Nunito', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 150ms linear,
+              color 150ms linear;
+}
+```
 
-And now, we can give our `html` tag a class of `light-mode`, like this:
+And now, we can give our `<html>` tag a class of `light-mode`, like this:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 7.html %}
+```html
+<html class="light-mode">
+```
 
 If you've done everything correctly, you can see that... nothing has really changed. And that's good! If your site looks just like before, it means that it worked.
 
-You can test if your dark theme works by changing the class of the `html` tag, either in your code or in your browser's developer tools.
+You can test if your dark theme works by changing the class of the `<html>` tag, either in your code or in your browser's developer tools.
 
 But how are we gonna implement a way for the users to switch themes?
 
@@ -64,17 +129,30 @@ The way I did it on my blog is that I made a small switch that stays in the top 
 
 I'm not gonna go too much into the design part of the switch, but let's have this HTML tag as our implementation example:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 8.html %}
+```html
+<a href="javascript://" id="color-mode-switcher">Switch Theme</a>
+```
 
-<!-- weird bug -->
+Our goal is simple: every time you click on the switch, it should replace the current class of the `<html>` tag with the class of the other theme. We can easily achieve this using the following JavaScript code:
 
-Our goal is simple: every time you click on the switch, it should replace the current class of the `html` tag with the class of the other theme. We can easily achieve this using the following JavaScript code:
+```js
+const colorModeSwitcher = document.querySelector('#color-mode-switcher');
+colorModeSwitcher.onclick = function () {
+  const html = document.documentElement;
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 9.js %}
+  if (html.classList.contains('light-mode')) {
+    html.classList.replace('light-mode', 'dark-mode');
+  } else {
+    html.classList.replace('dark-mode', 'light-mode');
+  }
+};
+```
 
-And then you can add your JavaScript in the `head` part of your document, but make sure to use the `defer` attribute so that the JavaScript loads after the page finishes loading.
+And then you can add your JavaScript in the `<head>` part of your document, but make sure to use the `defer` attribute so that the JavaScript loads after the page finishes loading.
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 10.html %}
+```html
+<script src="bundle.js" defer></script>
+```
 
 And now the switch should work. If it doesn't, make sure to check your developer console, since it could be very helpful in idenfiying the problem.
 
@@ -86,19 +164,39 @@ That's cool and all, but once you reload, it defaults to the light mode theme. L
 
 We can easily modify our JavaScript event to write to the localStorage every time you click on the switch.
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 11.js %}
+```js
+if (html.classList.contains('light-mode')) {
+  html.classList.replace('light-mode', 'dark-mode');
+  localStorage.setItem('theme', 'dark-mode');
+} else {
+  html.classList.replace('dark-mode', 'light-mode');
+  localStorage.setItem('theme', 'light-mode');
+}
+```
 
 If you open up the browser console and type `localStorage`, you can see that the `theme` value has indeed been set.
 
-The next step is to make the page check whether the theme has been set in the Local Storage on load time and set the class name of the `html` element if that's the case. This way we can make sure that the page will display the correct theme every time you switch pages or reload the page.
+The next step is to make the page check whether the theme has been set in the Local Storage on load time and set the class name of the `<html>` element if that's the case. This way we can make sure that the page will display the correct theme every time you switch pages or reload the page.
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 12.js %}
+```js
+const theme = localStorage.getItem('theme');
+if (theme) {
+  document.documentElement.className = theme;
+}
+```
 
 And that's all! You have a fully working light/dark mode switch that remembers your theme selection.
 
-**Note:** you've probably noticed that on every reload/navigation the light theme appears for a split second and it only switches to the dark theme after that. A good way to solve this issue is by inserting the last bit of code as a separate, non-defered `script` block in the head of the page, like this:
+**Note:** you've probably noticed that on every reload/navigation the light theme appears for a split second and it only switches to the dark theme after that. A good way to solve this issue is by inserting the last bit of code as a separate, non-defered `<script>` block in the head of the page, like this:
 
-{% gist 73f5b2eae201dc5f5c278d4ced965d50 13.html %}
+```html
+<script>
+  const theme = localStorage.getItem('theme');
+  if (theme) {
+    document.documentElement.className = theme;
+  }
+</script>
+```
 
 I normally wouldn't do this, since this is content-blocking, but it's the easiest way to achieve what we want.
 

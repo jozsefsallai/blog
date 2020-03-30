@@ -81,9 +81,6 @@ theme: sallai
 deploy:
   type:
 
-lazyload:
-  enable: true
-
 all_minifier: true
 
 css_minifier:
