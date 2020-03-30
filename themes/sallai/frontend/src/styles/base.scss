@@ -79,22 +79,24 @@ a {
   text-align: right;
   opacity: 1;
 
-  .name {
-    font-size: 75px;
-    font-weight: 700;
-    color: var(--theme);
-    text-shadow: 4px 4px 0 rgba(var(--theme), 0.35);
+  header {
+    .name {
+      font-size: 75px;
+      font-weight: 700;
+      color: var(--theme);
+      text-shadow: 4px 4px 0 rgba(var(--theme), 0.35);
 
-    &.discord {
-      font-size: 38px;
+      &.discord {
+        font-size: 38px;
+      }
     }
-  }
 
-  .subtitle {
-    margin-top: -20px;
-    margin-bottom: 5px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
+    .subtitle {
+      margin-top: -20px;
+      margin-bottom: 5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
   }
 
   &.content-page {
@@ -126,16 +128,18 @@ a {
       }
     }
 
-    .name {
-      font-size: 55px;
-      margin: 0;
-    }
+    header {
+      .name {
+        font-size: 55px;
+        margin: 0;
+      }
 
-    .subtitle {
-      margin-top: 0;
+      .subtitle {
+        margin-top: 0;
 
-      a {
-        font-weight: 500;
+        a {
+          font-weight: 500;
+        }
       }
     }
 
