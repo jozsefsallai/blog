@@ -1,8 +1,10 @@
-const path              = require('path');
-const webpack           = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path                    = require('path');
+const webpack                 = require('webpack');
+const MiniCSSExtractPlugin    = require('mini-css-extract-plugin');
+const TerserJSPlugin          = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const extractSass = new ExtractTextPlugin({
+const extractSass = new MiniCSSExtractPlugin({
   filename: '[name].css',
   disable: false
 });
@@ -15,10 +17,6 @@ if (process.env.NODE_ENV === 'production') {
   plugins.push(
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: '"production"' }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: { warnings: false }
     })
   );
 }
@@ -27,7 +25,12 @@ const devtool = process.env.NODE_ENV === 'production'
   ? 'source-map'
   : 'eval-source-map';
 
+const mode = process.env.NODE_ENV === 'production'
+  ? 'production'
+  : 'development';
+
 module.exports = {
+  mode,
   entry: './src/index.js',
   devtool,
   output: {
@@ -51,13 +54,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: [
-            { loader: 'css-loader', options: { minimize: process.env.NODE_ENV === 'production' } },
-            { loader: 'sass-loader' }
-          ],
-          fallback: 'style-loader'
-        })
+        use: [
+          MiniCSSExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
       }
     ]
   },
@@ -65,5 +67,15 @@ module.exports = {
   resolve: {
     extensions: [ '.js', '.json' ],
     modules: [ 'node_modules', path.resolve(__dirname, 'src') ]
+  },
+  performance: {
+    hints: false
+  },
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production',
+    minimizer: [
+      new TerserJSPlugin({}),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   }
 };
