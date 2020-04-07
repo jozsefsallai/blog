@@ -12,8 +12,6 @@ categories:
 img: fiber.png
 ---
 
-# Creating Fast APIs In Go Using Fiber
-
 During my career as a software engineer, I've made several APIs in different languages and frameworks. I've used Flask, Falcon, and Django (Python), Laravel (PHP), Rails (Ruby), but my all time favorite web framework is [Express (Node.js)](https://expressjs.com/). It's performant, flexible, and very fun to use. I also really like [Koa](https://koajs.com/), which is a successor to Express, made by the guys behind Express. I think it's safe to say that Express became the de facto standard web framework among Node.js developers.
 
 However, there's another programming language I absolutely love, and that is **Go**. It's a performant, cross-platform, and fun language that I keep recommending to everyone who wants to learn a C-like language but doesn't feel ready for the complexity of C/C++ and the like. Go is mature enough to be used in production environments, which is why many companies - large and small - use it to develop their infrastructure.
