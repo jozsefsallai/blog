@@ -32,7 +32,7 @@ const Header = ({ categories }: { categories: string[] }) => {
           {categories.slice(0).sort((a, b) => a.localeCompare(b)).map((category, idx) => (
             <Link
               href="/categories/[category]"
-              as={`/categories/${category}`}
+              as={`/categories/${encodeURIComponent(category)}`}
               key={idx}
             >
               <a className={styles.categoryLink}>{category}</a>

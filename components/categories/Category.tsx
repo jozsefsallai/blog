@@ -6,7 +6,7 @@ const Categories = ({ categories }: { categories: string[] }) => {
       {categories.map((category, idx) => {
         return (
           <span key={category}>
-            <Link href="/categories/[category]" as={`/categories/${category}`}>
+            <Link href="/categories/[category]" as={`/categories/${encodeURIComponent(category)}`}>
               <a>{category}</a>
             </Link>
 
