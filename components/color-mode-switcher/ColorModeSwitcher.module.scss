@@ -1,0 +1,16 @@
+@import 'colors';
+
+.cms {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  background: $gray;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}

@@ -1,0 +1,77 @@
+@import './colors';
+@import './mixins';
+@import './highlight';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+.light-mode {
+  --background: #fff;
+  --foreground: #000;
+
+  --title: #111;
+  --meta-background: #f5f5f5;
+  --meta-border-color: #ddd;
+  --read-more-background: #efefef;
+  --read-mode-foreground: #222;
+
+  --code-background: #eee;
+  --code-shadow: #fff;
+
+  --theme: #{$theme};
+  --theme-faint: #{$theme-faint};
+}
+
+.dark-mode {
+  --background: #111;
+  --foreground: #fff;
+
+  --title: #f3f3f3;
+  --meta-background: #232323;
+  --meta-border-color: #434343;
+  --read-more-background: #333;
+  --read-mode-foreground: #fefefe;
+
+  --code-background: #333;
+  --code-shadow: #121212;
+
+  --theme: #{$theme-dark};
+  --theme-faint: #{$theme-dark-faint};
+}
+
+body {
+  margin: 0;
+  font: 16px / 1.6 'Nunito', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 150ms linear,
+              color 150ms linear;
+}
+
+a {
+  text-decoration: none;
+  color: $accent;
+
+  &:hover {
+    color: $accent-second;
+  }
+}
+
+.page {
+  margin: 50px auto;
+  width: 870px;
+
+  @media only screen and ( max-width: 980px ) {
+    width: auto;
+    margin: 20px;
+
+    .photo {
+      display: none;
+    }
+  }
+
+  @media only screen and ( max-width: 380px ) {
+    .name {
+      font-size: 45px;
+    }
+  }
+}

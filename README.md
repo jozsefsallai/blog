@@ -2,31 +2,41 @@
 
 https://blog.sallai.me
 
+## Project Description
+
+This is a simple blog application written in [Next.js][1]. It takes advantage of
+features such as static-site generation and server-side rendering, all while
+enjoying the benefits of React and its ecosystem. The blog deploys to
+[Vercel](https://vercel.com).
+
 ## Quick Setup
 
 ```sh
-git clone git@github.com:jozsefsallai/blog
+git clone git@github.com:jozsefsallai/blog.git
 cd blog
-npm i -g yarn
-yarn
-cd themes/sallai  # will be further improved later on
-yarn
-cd ../..
-yarn generate
+npm i
+npm run dev
 ```
 
-For serving you may either create a virtual host that points to the `/public/` directory or just run `yarn serve`.
+To create a post you can use the helper script:
 
-For everyday development, running `yarn watch` and `yarn generate:dry` in separate tabs is recommended.
-
-To add content, you must have Hexo installed:
-
-```
-npm i -g hexo
+```sh
+npm run create
 ```
 
-More info about the usage on the [Hexo Documentation Page](https://hexo.io/docs/writing).
+### Note
+
+It is recommended that you create a `.env` file with the following contents:
+
+```
+PROTOCOL=http
+DOMAIN=localhost
+PORT=3000
+```
 
 ## License
 
-All rights reserved. [Hexo](https://hexo.io) is an open-source project.
+MIT. You may feel free to use parts of this blog to make your own. [Next.js][1]
+is an open-source project.
+
+[1]: https://nextjs.org

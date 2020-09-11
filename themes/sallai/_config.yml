@@ -1,9 +1,0 @@
-# Header
-menu:
-  - name: Home
-    url: /
-  - name: Website
-    url: https://sallai.me
-
-# Miscellaneous
-favicon: /images/favicon.png

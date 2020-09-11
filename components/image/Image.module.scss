@@ -1,0 +1,7 @@
+.blur {
+  filter: blur(5px);
+
+  &:global(.lazyloaded) {
+    filter: blur(0);
+  }
+}

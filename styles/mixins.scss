@@ -1,0 +1,18 @@
+@mixin social-icon($name, $color) {
+  &.#{$name} {
+    &:hover {
+      background: $color;
+    }
+  }
+}
+
+@mixin social-share-button($name, $color) {
+  &.#{$name} {
+    background: $color;
+    transition: background 150ms linear;
+
+    &:hover {
+      background: darken($color, 10%);
+    }
+  }
+}

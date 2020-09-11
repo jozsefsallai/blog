@@ -1,0 +1,59 @@
+@import 'colors';
+@import 'mixins';
+
+.sharing {
+  margin: 40px 0;
+  border: 3px solid var(--theme);
+  border-radius: 10px;
+  background: var(--theme-faint);
+  padding: 15px 20px;
+  padding-bottom: 45px;
+
+  .title {
+    font-weight: 700;
+    color: var(--theme);
+    text-shadow: 2px 2px 0 rgba(23, 62, 134, 0.35);
+    font-size: 35px;
+    margin: 10px 0;
+  }
+
+  .title, p {
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 35px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      display: block;
+      padding: 10px 15px;
+      width: 100%;
+      margin: 0 5px;
+      text-align: center;
+      color: #fff;
+      border-radius: 4px;
+
+      @include social-share-button(facebook, $facebook);
+      @include social-share-button(twitter, $twitter);
+      @include social-share-button(linkedin, $linkedin);
+
+      svg {
+        margin-right: 3px;
+      }
+
+      svg, span {
+        @media only screen and ( max-width: 575px ) {
+          display: block;
+          margin: 0 auto;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}

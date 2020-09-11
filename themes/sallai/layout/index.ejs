@@ -1,9 +1,0 @@
-<div class="article-list">
-  <% page.posts.forEach(post => { %>
-  <%- partial('_partial/post-list', { post }) %>
-  <% }); %>
-</div>
-
-<% if (page.total > 1) { %>
-<%- partial('_partial/pagination') %>
-<% } %>
