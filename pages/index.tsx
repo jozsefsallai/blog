@@ -1,5 +1,4 @@
 import Layout from '@/components/Layout';
-import Head from 'next/head';
 
 import PostList from '@/components/posts/PostList';
 

@@ -2,12 +2,12 @@ import Header from './the-header/Header';
 import Footer from './the-footer/Footer';
 import ColorModeSwitcher from './color-mode-switcher/ColorModeSwitcher';
 
-const Layout = ({ children, categories }) => {
+const Layout = (props) => {
   return (
     <main className="page">
-      <Header categories={categories} />
+      <Header categories={props.categories} />
 
-      {children}
+      {props.children}
 
       <ColorModeSwitcher />
 
