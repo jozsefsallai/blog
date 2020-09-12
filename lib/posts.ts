@@ -2,6 +2,7 @@ import matter from 'gray-matter';
 import * as fs from 'fs';
 import * as path from 'path';
 import slugify from '@sindresorhus/slugify';
+import { es } from 'date-fns/locale';
 
 const POSTS_PATH = path.join(process.cwd(), 'posts');
 
@@ -17,6 +18,7 @@ interface RawPostData {
 export interface IPost extends RawPostData {
   slug: string;
   content?: string;
+  readingtime: number;
 }
 
 export interface IPostFetchOptions {
@@ -36,6 +38,10 @@ export interface ITag {
   slug: string;
 }
 
+const estimateReadingTime = (content: string): number => {
+  return Math.ceil(content.split(' ').length / 200);
+};
+
 const fetchPosts = (opts: IPostFetchOptions = undefined): IPost[] => {
   const posts: IPost[] = fs.readdirSync(POSTS_PATH)
     .filter(file => file.endsWith('.md'))
@@ -46,10 +52,12 @@ const fetchPosts = (opts: IPostFetchOptions = undefined): IPost[] => {
       const data: RawPostData = frontmatter.data as RawPostData;
 
       const slug = file.replace('.md', '');
+      const readingtime = estimateReadingTime(frontmatter.content);
 
       return {
         ...data,
-        slug
+        slug,
+        readingtime
       };
     });
 
@@ -86,11 +94,13 @@ const fetchPost = (slug: string): IPost | null => {
   const frontmatter = matter(raw);
   const data: RawPostData = frontmatter.data as RawPostData;
   const content: string = frontmatter.content;
+  const readingtime: number = estimateReadingTime(content);
 
   return {
     ...data,
     slug,
-    content
+    content,
+    readingtime
   };
 };
 

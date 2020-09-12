@@ -13,45 +13,44 @@
     }
 
     .name {
-      font-size: 55px;
+      font-size: 45px;
+      font-weight: 300;
       margin: 0;
-      font-weight: 700;
-      color: var(--theme);
-      text-shadow: 4px 4px 0 rgba(var(--theme), 0.35);
+      color: var(--foreground);
     }
 
     .navigation {
       .navItem {
         display: inline-block;
         text-align: center;
-        line-height: 45px;
-        margin-right: 15px;
-        background: $gray;
-        color: #fff;
+        margin-right: 20px;
+        color: var(--foreground);
         font-size: 24px;
         transition: all 150ms linear;
         font-size: 20px;
         vertical-align: top;
-        padding: 0 10px;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
 
         &:last-child {
           margin-right: 0;
         }
 
         &:hover {
-          background: var(--theme);
+          border-bottom-color: var(--theme);
         }
       }
     }
   }
 
   .siteCategories {
-    background: var(--theme);
+    background: var(--read-more-background);
     margin: 10px 0;
+    text-align: center;
 
     .categoryLink {
       display: inline-block;
-      color: #fff;
+      color: var(--read-more-foreground);
       padding: 10px 20px;
       margin-right: 2px;
 

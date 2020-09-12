@@ -30,14 +30,18 @@ const PostLink = (props) => {
 };
 
 const Post = ({ post, list }: PostOpts) => {
-  const readingTime = post.content && Math.ceil(post.content.split(' ').length / 200);
-
   return (
     <article className={styles.post}>
+      {!list && post.image?.length && (
+        <figure className={styles.postImage}>
+          <MarkdownImage src={post.image} alt={post.title} />
+        </figure>
+      )}
+
       {list && (
         <h2 className={styles.title}>
           <PostLink slug={post.slug}>
-            <Twemoji options={{ className: 'twemoji' }}>
+            <Twemoji options={{ className: 'twemoji' }} tag="span">
               {post.title}
             </Twemoji>
           </PostLink>
@@ -45,50 +49,22 @@ const Post = ({ post, list }: PostOpts) => {
       )}
 
       {!list && (
-        <>
-          <h2 className={styles.title}>
-            <Twemoji options={{ className: 'twemoji' }}>
-              {post.title}
-            </Twemoji>
-          </h2>
-
-          <div className={styles.readingTime}>
-            <FontAwesomeIcon icon={faClock} />
-            <strong>Reading time: </strong>
-            <span>{readingTime === 1 ? '1 minute' : `${readingTime} minutes`}</span>
-          </div>
-        </>
-      )}
-
-      {list && post.image?.length && (
-        <figure className={styles.postImage}>
-          <PostLink slug={post.slug}>
-            <MarkdownImage src={post.image} alt={post.title} />
-          </PostLink>
-        </figure>
-      )}
-
-      {!list && post.image?.length && (
-        <figure className={styles.postImage}>
-          <MarkdownImage src={post.image} alt={post.title} />
-        </figure>
-      )}
-
-      <section className={styles.postContent}>
-        {list && <p>{post.description}</p>}
-        {!list && <PostContent content={post.content} />}
-      </section>
-
-      {list && (
-        <div className={styles.readMore}>
-          <PostLink slug={post.slug}>Read More</PostLink>
-        </div>
+        <h2 className={styles.title}>
+          <Twemoji options={{ className: 'twemoji' }} tag="span">
+            {post.title}
+          </Twemoji>
+        </h2>
       )}
 
       <div className={styles.meta}>
         <span>
           <FontAwesomeIcon icon={faCalendarAlt} />
           {format(new Date(post.date), 'MMMM dd, yyyy')}
+        </span>
+
+        <span>
+          <FontAwesomeIcon icon={faClock} />
+          {post.readingtime} min read
         </span>
 
         <span>
@@ -101,6 +77,11 @@ const Post = ({ post, list }: PostOpts) => {
           <Tags tags={post.tags} />
         </span>
       </div>
+
+      <section className={styles.postContent}>
+        {list && post.description}
+        {!list && <PostContent content={post.content} />}
+      </section>
     </article>
   );
 };

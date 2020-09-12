@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: rgba(23, 62, 134, 0.5);
+  background: var(--theme);
   transition: width 100ms linear;
   z-index: 1000;
 }

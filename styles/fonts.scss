@@ -1,0 +1,40 @@
+// Comme
+@font-face {
+  font-family: 'comme';
+  src: url('./fonts/comme/comme-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Merriweather
+@font-face {
+  font-family: 'merriweather';
+  src: url('./fonts/merriweather/merriweather-regular.woff2') format('woff2'),
+       url('./fonts/merriweather/merriweather-regular.woff') format('woff'),
+       url('./fonts/merriweather/merriweather-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'merriweather';
+  src: url('./fonts/merriweather/merriweather-900.woff2') format('woff2'),
+       url('./fonts/merriweather/merriweather-900.woff') format('woff'),
+       url('./fonts/merriweather/merriweather-900.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Source Code Pro
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('./fonts/source-code-pro/source-code-pro-regular.woff2') format('woff2'),
+       url('./fonts/source-code-pro/source-code-pro-regular.woff') format('woff'),
+       url('./fonts/source-code-pro/source-code-pro-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

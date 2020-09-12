@@ -2,11 +2,9 @@
   margin: 2em 0;
 
   .title {
-    font-weight: 700;
-    color: var(--theme);
-    text-shadow: 2px 2px 0 rgba(23, 62, 134, 0.35);
-    font-size: 35px;
-    margin: 10px 0;
+    font-size: 30px;
+    margin: 5px 0;
+    font-weight: 900;
 
     a {
       color: var(--title);
@@ -19,6 +17,7 @@
 
   .postImage {
     margin: 0;
+    margin-bottom: 20px;
   }
 
   .readingTime {
@@ -35,6 +34,7 @@
 
   .postContent {
     font-size: 18px;
+    font-family: 'merriweather', Georgia, 'Times New Roman', Times, serif;
 
     h1, h2, h3, h4, h5 {
       line-height: 1.1em;
@@ -108,7 +108,7 @@
       footer {
         font-size: 16px;
         margin: 1.6em 0;
-        font-family: 'Nunito', sans-serif;
+        font-family: 'comme', sans-serif;
 
         cite {
           &::before {
@@ -156,41 +156,17 @@
   :global(.twemoji) {
     height: 1.2em;
     display: inline-block;
-    vertical-align: middle;
-  }
-
-  .readMore {
-    text-align: center;
-    margin-bottom: 20px;
-
-    a {
-      display: block;
-      padding: 6px 20px;
-      background: var(--read-more-background);
-      color: var(--read-more-foreground);
-      font-size: 14px;
-      font-weight: 700;
-      border-radius: 3px;
-
-      &:hover {
-        background: var(--theme);
-        color: #fff;
-      }
-    }
+    vertical-align: text-top;
   }
 
   .meta {
-    background: var(--meta-background);
-    border-top: 1px solid var(--meta-border-color);
-    border-bottom: 1px solid var(--meta-border-color);
-    margin-top: 20px;
-    padding: 10px 15px;
     color: #555;
-    font-size: 15px;
+    font-size: 14px;
+    margin-bottom: 5px;
 
     > span {
       display: inline-block;
-      margin-right: 30px;
+      margin-right: 15px;
 
       svg {
         margin-right: 5px;

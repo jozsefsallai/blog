@@ -3,16 +3,11 @@
 
 .sharing {
   margin: 40px 0;
-  border: 3px solid var(--theme);
-  border-radius: 10px;
   background: var(--theme-faint);
   padding: 15px 20px;
   padding-bottom: 45px;
 
   .title {
-    font-weight: 700;
-    color: var(--theme);
-    text-shadow: 2px 2px 0 rgba(23, 62, 134, 0.35);
     font-size: 35px;
     margin: 10px 0;
   }
