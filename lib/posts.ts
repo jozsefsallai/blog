@@ -1,6 +1,7 @@
 import matter from 'gray-matter';
 import * as fs from 'fs';
 import * as path from 'path';
+import slugify from '@sindresorhus/slugify';
 
 const POSTS_PATH = path.join(process.cwd(), 'posts');
 
@@ -23,6 +24,16 @@ export interface IPostFetchOptions {
   fetchAll?: boolean;
   page?: number;
   tag?: string;
+}
+
+export interface ICategory {
+  category: string;
+  slug: string;
+}
+
+export interface ITag {
+  tag: string;
+  slug: string;
 }
 
 const fetchPosts = (opts: IPostFetchOptions = undefined): IPost[] => {
@@ -83,7 +94,7 @@ const fetchPost = (slug: string): IPost | null => {
   };
 };
 
-const fetchCategories = (posts: IPost[] | null = null): string[] => {
+const fetchCategories = (posts: IPost[] | null = null): ICategory[] => {
   if (!posts) {
     posts = fetchPosts({ fetchAll: true });
   }
@@ -95,10 +106,15 @@ const fetchCategories = (posts: IPost[] | null = null): string[] => {
   });
 
   const set = new Set(categories);
-  return Array.from(set);
+  return Array.from(set).map(category => {
+    return {
+      slug: slugify(category),
+      category
+    };
+  });
 };
 
-const fetchTags = (posts: IPost[] | null = null): string[] => {
+const fetchTags = (posts: IPost[] | null = null): ITag[] => {
   if (!posts) {
     posts = fetchPosts({ fetchAll: true });
   }
@@ -110,7 +126,12 @@ const fetchTags = (posts: IPost[] | null = null): string[] => {
   });
 
   const set = new Set(tags);
-  return Array.from(set);
+  return Array.from(set).map(tag => {
+    return {
+      slug: slugify(tag),
+      tag
+    };
+  });
 };
 
 export {

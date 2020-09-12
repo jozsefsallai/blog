@@ -1,7 +1,8 @@
 import styles from './Header.module.scss';
 import Link from 'next/link';
+import { ICategory } from '@/lib/posts';
 
-const Header = ({ categories }: { categories: string[] }) => {
+const Header = ({ categories }: { categories: ICategory[] }) => {
   return (
     <div className={styles.blogHeader}>
       <div className={styles.headerTop}>
@@ -29,13 +30,13 @@ const Header = ({ categories }: { categories: string[] }) => {
 
       {categories && categories.length && (
         <div className={styles.siteCategories}>
-          {categories.slice(0).sort((a, b) => a.localeCompare(b)).map((category, idx) => (
+          {categories.slice(0).sort((a, b) => a.category.localeCompare(b.category)).map(category => (
             <Link
-              href="/categories/[category]"
-              as={`/categories/${encodeURIComponent(category)}`}
-              key={idx}
+              href="/categories/[slug]"
+              as={`/categories/${category.slug}`}
+              key={category.slug}
             >
-              <a className={styles.categoryLink}>{category}</a>
+              <a className={styles.categoryLink}>{category.category}</a>
             </Link>
           ))}
         </div>

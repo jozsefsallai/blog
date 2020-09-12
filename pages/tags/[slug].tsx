@@ -4,13 +4,13 @@ import PostList from '@/components/posts/PostList';
 
 import { fetchCategories, fetchPosts, fetchTags } from '@/lib/posts';
 
-const Tag = ({ tag, posts, categories }) => {
+const Tag = ({ slug, tag, posts, categories }) => {
   return (
     <Layout categories={categories}>
       <Meta
         title={tag}
         description={`Posts tagged as "${tag}" on József Sallai's blog.`}
-        url={`/tags/${tag}`}
+        url={`/tags/${slug}`}
       />
 
       <main>
@@ -21,13 +21,16 @@ const Tag = ({ tag, posts, categories }) => {
 };
 
 export const getStaticProps = async ctx => {
-  const tag = ctx.params.tag;
-  const posts = fetchPosts({ tag });
   const categories = fetchCategories();
+  const tags = fetchTags();
+  const slug = ctx.params.slug;
+  const { tag } = tags.find(t => t.slug === slug);
+  const posts = fetchPosts({ tag });
 
   return {
     props: {
       tag,
+      slug,
       posts,
       categories
     }
@@ -41,7 +44,7 @@ export const getStaticPaths = async ctx => {
     paths: tags.map(tag => {
       return {
         params: {
-          tag
+          slug: tag.slug
         }
       };
     }),
