@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './ReadingPositionIndicator.module.scss';
+import TopIndicator from './TopIndicator';
 
 const ReadingPositionIndicator = ({ target }) => {
   const [ progress, setProgress ] = useState(0);
@@ -29,7 +29,7 @@ const ReadingPositionIndicator = ({ target }) => {
     return () => window.removeEventListener('scroll', listener);
   }, []);
 
-  return <div className={styles.rpi} style={{ width: `${progress}%` }} />;
+  return <TopIndicator width={`${progress}%`} />;
 };
 
 export default ReadingPositionIndicator;

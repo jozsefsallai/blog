@@ -5,7 +5,7 @@ import { fetchCategories, fetchPost, fetchPosts, IPost } from '@/lib/posts';
 
 import Post from '@/components/posts/Post';
 import Sharebox from '@/components/sharebox/Sharebox';
-import ReadingPositionIndicator from '@/components/reading-position-indicator/ReadingPositionIndicator';
+import ReadingPositionIndicator from '@/components/indicators/ReadingPositionIndicator';
 
 import React from 'react';
 
