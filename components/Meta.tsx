@@ -6,10 +6,14 @@ export interface IMetaParams {
   description: string;
   image?: string;
   url: string;
+  noAppendBlogName?: boolean;
 }
 
-const Meta = ({ title, description, image, url }: IMetaParams) => {
-  title = `${title} - Joe's Blog`;
+const Meta = ({ title, description, image, url, noAppendBlogName }: IMetaParams) => {
+  if (!noAppendBlogName) {
+    title = `${title} - Joe's Blog`;
+  }
+
   image = buildUrl(image);
   url = buildUrl(url);
 
