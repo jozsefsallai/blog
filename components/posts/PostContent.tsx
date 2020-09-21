@@ -2,12 +2,14 @@ import Twemoji from 'react-twemoji';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '@/components/renderers/CodeBlock';
 import MarkdownImage from '@/components/renderers/MarkdownImage';
-import TextRenderer from '../renderers/TextRenderer';
+import TextRenderer from '@/components/renderers/TextRenderer';
+import ParagraphRenderer from '@/components/renderers/ParagraphRenderer';
 
 const renderers = {
   code: CodeBlock,
   image: MarkdownImage,
-  text: TextRenderer
+  text: TextRenderer,
+  paragraph: ParagraphRenderer
 };
 
 const PostContent = ({ content }: { content: string }) => {
