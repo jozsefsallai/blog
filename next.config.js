@@ -9,6 +9,26 @@ module.exports = withPlugins(
       includePaths: [
         path.join(__dirname, 'styles')
       ]
+    },
+    webpack(config) {
+      config.module.rules = config.module.rules.map(rule => {
+        if (rule.test && rule.test.toString() === '/\\.(jpe?g|png|svg|gif)$/i') {
+          const last = rule.oneOf.pop();
+
+          rule.oneOf.push({
+            resourceQuery: /meta/,
+            use: [
+              {
+                loader: '@lesechos/image-size-loader'
+              }
+            ]
+          }, last);
+        }
+
+        return rule;
+      });
+
+      return config;
     }
   }
 );
