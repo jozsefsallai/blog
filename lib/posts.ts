@@ -2,9 +2,9 @@ import matter from 'gray-matter';
 import * as fs from 'fs';
 import * as path from 'path';
 import slugify from '@sindresorhus/slugify';
-import { es } from 'date-fns/locale';
 
 const POSTS_PATH = path.join(process.cwd(), 'posts');
+const HUNGARIAN_POSTS_PATH = path.join(process.cwd(), 'posts/hu');
 
 interface RawPostData {
   title: string;
@@ -26,6 +26,7 @@ export interface IPostFetchOptions {
   fetchAll?: boolean;
   page?: number;
   tag?: string;
+  hungarian?: boolean;
 }
 
 export interface ICategory {
@@ -43,10 +44,12 @@ const estimateReadingTime = (content: string): number => {
 };
 
 const fetchPosts = (opts: IPostFetchOptions = undefined): IPost[] => {
-  const posts: IPost[] = fs.readdirSync(POSTS_PATH)
+  const postsPath = opts?.hungarian ? HUNGARIAN_POSTS_PATH : POSTS_PATH;
+
+  const posts: IPost[] = fs.readdirSync(postsPath)
     .filter(file => file.endsWith('.md'))
     .map(file => {
-      const raw = fs.readFileSync(path.join(POSTS_PATH, file), { encoding: 'utf8' });
+      const raw = fs.readFileSync(path.join(postsPath, file), { encoding: 'utf8' });
 
       const frontmatter = matter(raw);
       const data: RawPostData = frontmatter.data as RawPostData;
@@ -82,8 +85,8 @@ const fetchPosts = (opts: IPostFetchOptions = undefined): IPost[] => {
   return finalPosts.slice(page, page + 10);
 };
 
-const fetchPost = (slug: string): IPost | null => {
-  const postPath = path.join(POSTS_PATH, `${slug}.md`);
+const fetchPost = (slug: string, hungarian?: boolean): IPost | null => {
+  const postPath = path.join(hungarian ? HUNGARIAN_POSTS_PATH : POSTS_PATH, `${slug}.md`);
 
   if (!fs.existsSync(postPath)) {
     return null;
