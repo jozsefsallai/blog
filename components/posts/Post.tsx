@@ -9,7 +9,7 @@ import Twemoji from 'react-twemoji';
 
 import { IPost } from '@/lib/posts';
 
-import { format } from 'date-fns';
+import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faFolderOpen, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faTags } from '@fortawesome/free-solid-svg-icons';
@@ -59,7 +59,7 @@ const Post = ({ post, list }: PostOpts) => {
       <div className={styles.meta}>
         <span>
           <FontAwesomeIcon icon={faCalendarAlt} />
-          {format(new Date(post.date), 'MMMM dd, yyyy')}
+          {dayjs(new Date(post.date)).format('MMMM D, YYYY')}
         </span>
 
         <span>
